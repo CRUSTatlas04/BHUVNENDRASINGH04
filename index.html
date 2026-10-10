@@ -180,18 +180,23 @@
                     <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-accentCyan via-purple-600 to-accentPurple opacity-30 blur-xl animate-pulse"></div>
                     <div class="glass-panel p-6 rounded-3xl relative z-10 w-full max-w-sm flex flex-col items-center text-center space-y-4">
                         <div class="relative group">
-                            <div class="w-40 h-40 rounded-full overflow-hidden border-4 border-accentCyan/40 shadow-[0_0_25px_rgba(0,242,254,0.3)] bg-[#0f1016]">
-                                <!-- Permanent Default Profile Image for Bhuvnendra -->
-                                <img id="admin-profile-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400" alt="Bhuvnendra Singh Shyam" class="w-full h-full object-cover">
+                            <div class="w-40 h-40 rounded-full overflow-hidden border-4 border-accentCyan/40 shadow-[0_0_25px_rgba(0,242,254,0.3)] bg-[#0f1016] relative">
+                                <!-- Permanent Unchangeable Profile Image of Bhuvnendra with 14-day Lock Protection -->
+                                <img id="admin-profile-img" src="bunty 1.jpg" alt="Bhuvnendra Singh Shyam" class="w-full h-full object-cover">
+                                <!-- Admin Upload Trigger Overlay -->
+                                <label id="profile-upload-overlay" class="hidden absolute inset-0 bg-black/70 flex flex-col items-center justify-center text-accentCyan cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <i class="fa-solid fa-camera text-xl mb-1"></i>
+                                    <span class="text-[10px] font-bold text-white px-2 text-center">Change Photo (14-day lock)</span>
+                                    <input type="file" accept="image/*" class="hidden" onchange="updateHomeProfileImage(event)">
+                                </label>
                             </div>
-                            <label id="profile-upload-btn" class="hidden absolute bottom-0 right-0 bg-accentCyan text-black p-2.5 rounded-full shadow-lg cursor-pointer hover:scale-110" title="Change Profile Image">
-                                <i class="fa-solid fa-camera text-sm"></i>
-                                <input type="file" accept="image/*" class="hidden" onchange="updateProfileImage(event)">
-                            </label>
                         </div>
                         <div>
                             <h3 class="font-heading text-xl font-bold text-white">Bhuvnendra Singh Shyam</h3>
                             <p class="text-accentCyan text-xs font-semibold tracking-wider uppercase mt-1">Full-Stack & AI Builder</p>
+                        </div>
+                        <div id="profile-lock-status" class="text-[11px] text-gray-400 bg-black/40 px-3 py-1 rounded-full border border-white/10">
+                            <i class="fa-solid fa-lock text-accentCyan mr-1"></i> Profile Photo Secured
                         </div>
                         <div class="w-full pt-4 border-t border-white/10 flex justify-around text-xs text-gray-300">
                             <div><span class="block font-bold text-white text-base">B.Tech</span>CSE Graduate</div>
@@ -665,15 +670,35 @@
 
     <script>
         // PERMANENT DEFAULT IMAGES FOR BHUVNENDRA SINGH SHYAM
-        const DEFAULT_PROFILE_IMG = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400";
+        const DEFAULT_PROFILE_IMG = "bunty 1.jpg";
         const DEFAULT_PROJ_1 = "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?auto=format&fit=crop&q=80&w=600";
         const DEFAULT_PROJ_2 = "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=600";
         const DEFAULT_PROJ_3 = "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=600";
 
         window.addEventListener('DOMContentLoaded', () => {
-            // Load saved or permanent default images
-            const savedProfile = localStorage.getItem('bs_profile_img') || DEFAULT_PROFILE_IMG;
-            document.getElementById('admin-profile-img').src = savedProfile;
+            // Check 14-day profile lock and load permanent image
+            const profileImgEl = document.getElementById('admin-profile-img');
+            const savedCustomImg = localStorage.getItem('bs_custom_profile_img');
+            const lockTimestamp = localStorage.getItem('bs_profile_lock_time');
+
+            if (savedCustomImg) {
+                profileImgEl.src = savedCustomImg;
+            } else {
+                profileImgEl.src = DEFAULT_PROFILE_IMG;
+            }
+
+            // Calculate lock remaining time (14 days)
+            if (lockTimestamp) {
+                const now = new Date().getTime();
+                const diffDays = (now - parseInt(lockTimestamp)) / (1000 * 60 * 60 * 24);
+                const statusEl = document.getElementById('profile-lock-status');
+                if (diffDays < 14) {
+                    const daysLeft = Math.ceil(14 - diffDays);
+                    if (statusEl) statusEl.innerHTML = `<i class="fa-solid fa-lock text-amber-400 mr-1"></i> Locked for ${daysLeft} more days`;
+                } else {
+                    if (statusEl) statusEl.innerHTML = `<i class="fa-solid fa-lock-open text-accentCyan mr-1"></i> Photo lock expired (Ready for update)`;
+                }
+            }
 
             for (let i = 1; i <= 3; i++) {
                 const defaultImg = i === 1 ? DEFAULT_PROJ_1 : (i === 2 ? DEFAULT_PROJ_2 : DEFAULT_PROJ_3);
@@ -823,8 +848,10 @@
             if (dashboardLink) dashboardLink.classList.remove('hidden');
 
             document.querySelectorAll('.admin-proj-edit').forEach(el => el.classList.remove('hidden'));
-            const uploadBtn = document.getElementById('profile-upload-btn');
-            if (uploadBtn) uploadBtn.classList.remove('hidden');
+            
+            // Show upload overlay for admin on profile image
+            const overlay = document.getElementById('profile-upload-overlay');
+            if (overlay) overlay.classList.remove('hidden');
         }
 
         function enableMemberUI(name) {
@@ -840,8 +867,8 @@
             const dashboardLink = document.getElementById('admin-dashboard-link');
             if (dashboardLink) dashboardLink.classList.add('hidden');
             document.querySelectorAll('.admin-proj-edit').forEach(el => el.classList.add('hidden'));
-            const uploadBtn = document.getElementById('profile-upload-btn');
-            if (uploadBtn) uploadBtn.classList.add('hidden');
+            const uploadOverlay = document.getElementById('profile-upload-overlay');
+            if (uploadOverlay) uploadOverlay.classList.add('hidden');
         }
 
         window.logout = function() {
@@ -1094,19 +1121,38 @@
             }
         };
 
-        window.updateProfileImage = function(event) {
+        window.updateHomeProfileImage = function(event) {
             const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const dataUrl = e.target.result;
-                    document.getElementById('admin-profile-img').src = dataUrl;
-                    localStorage.setItem('bs_profile_img', dataUrl);
-                    logActivity('Bhuvnendra Singh (Admin)', 'Updated profile image');
-                    showToast("Profile image updated and saved permanently!");
-                };
-                reader.readAsDataURL(file);
+            if (!file) return;
+
+            // Check 14-day lock rule
+            const lockTimestamp = localStorage.getItem('bs_profile_lock_time');
+            if (lockTimestamp) {
+                const now = new Date().getTime();
+                const diffDays = (now - parseInt(lockTimestamp)) / (1000 * 60 * 60 * 24);
+                if (diffDays < 14) {
+                    const remainingDays = Math.ceil(14 - diffDays);
+                    showToast(`Profile photo is locked for ${remainingDays} more days to protect your identity!`);
+                    return;
+                }
             }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const dataUrl = e.target.result;
+                const profileImgEl = document.getElementById('admin-profile-img');
+                if (profileImgEl) {
+                    profileImgEl.src = dataUrl;
+                }
+                localStorage.setItem('bs_custom_profile_img', dataUrl);
+                localStorage.setItem('bs_profile_lock_time', new Date().getTime().toString());
+                logActivity('Bhuvnendra Singh (Admin)', 'Updated home profile image (14-day lock applied)');
+                showToast("Profile image updated and locked securely for 14 days!");
+                
+                const statusEl = document.getElementById('profile-lock-status');
+                if (statusEl) statusEl.innerHTML = `<i class="fa-solid fa-lock text-amber-400 mr-1"></i> Locked for 14 days`;
+            };
+            reader.readAsDataURL(file);
         };
 
         window.updateProjectImage = function(id, event) {
