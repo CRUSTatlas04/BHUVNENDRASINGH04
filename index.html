@@ -608,22 +608,24 @@
     <div id="reportModal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
         <div class="glass-panel w-full max-w-lg p-8 rounded-3xl relative space-y-6">
             <button onclick="closeModal('reportModal')" class="absolute top-5 right-5 text-gray-400 hover:text-white cursor-pointer"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-rose-500/10 text-rose-400 text-xs font-bold uppercase"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Direct Admin Support</div>
             <h3 class="font-heading text-2xl font-extrabold text-white">Report Website Issue</h3>
-            <p class="text-gray-400 text-xs">Send an email directly to Bhuvnendra Singh's Gmail inbox regarding bugs, feedback, or collaboration queries.</p>
+            <p class="text-gray-400 text-xs">Send a direct message or bug report straight to Bhuvnendra Singh's Gmail inbox (<code class="text-accentCyan font-bold">crustatlas04@gmail.com</code>).</p>
             
-            <div class="space-y-4">
+            <!-- Form configured with Formspree for reliable public submission -->
+            <form id="reportForm" action="https://formspree.io/f/xlgppqwe" method="POST" class="space-y-4" onsubmit="handleFormSubmit(event)">
                 <div>
                     <label class="block text-xs text-gray-300 mb-1">Your Name / Email</label>
-                    <input type="text" id="issueSender" placeholder="e.g. John Doe (john@example.com)" class="glass-input w-full px-4 py-3 rounded-xl text-sm">
+                    <input type="text" name="sender" id="issueSender" required placeholder="e.g. John Doe (john@example.com)" class="glass-input w-full px-4 py-3 rounded-xl text-sm">
                 </div>
                 <div>
                     <label class="block text-xs text-gray-300 mb-1">Describe the Issue or Message</label>
-                    <textarea id="issueMessage" rows="4" placeholder="Describe the bug or query in detail..." class="glass-input w-full px-4 py-3 rounded-xl text-sm"></textarea>
+                    <textarea name="message" id="issueMessage" rows="4" required placeholder="Describe the bug or query in detail..." class="glass-input w-full px-4 py-3 rounded-xl text-sm"></textarea>
                 </div>
-                <button onclick="sendAdminEmail()" class="w-full py-3 rounded-xl bg-gradient-to-r from-accentCyan to-purple-600 text-black font-extrabold text-sm uppercase shadow-[0_0_15px_rgba(0,242,254,0.3)] flex items-center justify-center gap-2 cursor-pointer">
-                    <i class="fa-solid fa-paper-plane"></i> Send Mail to crustatlas04@gmail.com
+                <button type="submit" id="submitIssueBtn" class="w-full py-3 rounded-xl bg-gradient-to-r from-accentCyan to-purple-600 text-black font-extrabold text-sm uppercase shadow-[0_0_15px_rgba(0,242,254,0.3)] flex items-center justify-center gap-2 cursor-pointer hover:opacity-90 transition-all">
+                    <i class="fa-solid fa-paper-plane"></i> Send Message to Admin
                 </button>
-            </div>
+            </form>
         </div>
     </div>
 
@@ -789,33 +791,42 @@
         window.logout = function() {
             localStorage.removeItem('bs_user_role');
             localStorage.removeItem('bs_logged_user_name');
-            const navArea = document.getElementById('auth-nav-area');
-            if (navArea) {
-                navArea.innerHTML = `
-                    <button type="button" onclick="openModal('memberAuthModal')" class="text-xs sm:text-sm font-bold px-3 py-2 rounded-xl glass-panel text-white hover:border-accentCyan/50 transition-all cursor-pointer"><i class="fa-solid fa-user mr-1 text-accentCyan"></i> Member Login</button>
-                    <button type="button" onclick="openModal('registerModal')" class="text-xs sm:text-sm font-bold px-3 py-2 rounded-xl bg-purple-500/20 border border-purple-500/40 text-purple-300 hover:bg-purple-500/30 transition-all cursor-pointer"><i class="fa-solid fa-user-plus mr-1"></i> Register / Join</button>
-                    <button type="button" onclick="openModal('adminAuthModal')" class="text-xs sm:text-sm font-bold px-3 py-2 rounded-xl bg-gradient-to-r from-accentCyan to-accentPurple text-black hover:opacity-90 shadow-[0_0_15px_rgba(0,242,254,0.3)] cursor-pointer"><i class="fa-solid fa-shield-halved mr-1"></i> Admin Login</button>
-                `;
-            }
-            document.querySelectorAll('.admin-proj-edit').forEach(el => el.classList.add('hidden'));
-            const uploadBtn = document.getElementById('profile-upload-btn');
-            if (uploadBtn) uploadBtn.classList.add('hidden');
-            showToast("Logged out successfully");
+            window.location.reload();
         };
 
-        // ADMIN EMAIL REPORTING VIA GMAIL INTENT
-        window.sendAdminEmail = function() {
-            const sender = document.getElementById('issueSender').value.trim();
-            const message = document.getElementById('issueMessage').value.trim();
-            if (!message) {
-                showToast("Please enter a description or message.");
-                return;
+        // ADMIN EMAIL REPORTING VIA FORMSPREE
+        window.handleFormSubmit = async function(event) {
+            event.preventDefault();
+            const form = event.target;
+            const btn = document.getElementById('submitIssueBtn');
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-2"></i> Sending...`;
+            btn.disabled = true;
+
+            const data = new FormData(form);
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: data,
+                    headers: {
+                        'Accept': 'json'
+                    }
+                });
+                
+                if (response.ok) {
+                    showToast("Message sent successfully to Bhuvnendra's Gmail!");
+                    form.reset();
+                    closeModal('reportModal');
+                } else {
+                    showToast("Failed to send message. Please email crustatlas04@gmail.com directly.");
+                }
+            } catch (error) {
+                showToast("Network error. Please check your internet connection.");
+            } finally {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
             }
-            const subject = encodeURIComponent("Portfolio Website Issue / Query from " + (sender || "Anonymous Visitor"));
-            const body = encodeURIComponent(`Sender: ${sender}\n\nMessage:\n${message}`);
-            window.location.href = `mailto:crustatlas04@gmail.com?subject=${subject}&body=${body}`;
-            showToast("Opening Gmail client to send message...");
-            closeModal('reportModal');
         };
 
         // 10 VIBES & BACKGROUND THEMES FOR CV BUILDER
@@ -897,7 +908,6 @@
                     if (imgEl && container) {
                         imgEl.src = dataUrl;
                         container.classList.remove('hidden');
-                        // Reset crop sliders
                         document.getElementById('cv-zoom-slider').value = 100;
                         document.getElementById('cv-posx-slider').value = 0;
                         document.getElementById('cv-posy-slider').value = 0;
@@ -994,7 +1004,6 @@
             }
         };
 
-        // PERSISTENT IMAGE UPLOADS
         window.updateProfileImage = function(event) {
             const file = event.target.files[0];
             if (file) {
