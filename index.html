@@ -181,9 +181,7 @@
                     <div class="glass-panel p-6 rounded-3xl relative z-10 w-full max-w-sm flex flex-col items-center text-center space-y-4">
                         <div class="relative group">
                             <div class="w-40 h-40 rounded-full overflow-hidden border-4 border-accentCyan/40 shadow-[0_0_25px_rgba(0,242,254,0.3)] bg-[#0f1016] relative">
-                                <!-- Permanent Unchangeable Profile Image of Bhuvnendra with 14-day Lock Protection -->
                                 <img id="admin-profile-img" src="bunty 1.jpg" alt="Bhuvnendra Singh Shyam" class="w-full h-full object-cover">
-                                <!-- Admin Upload Trigger Overlay -->
                                 <label id="profile-upload-overlay" class="hidden absolute inset-0 bg-black/70 flex flex-col items-center justify-center text-accentCyan cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity">
                                     <i class="fa-solid fa-camera text-xl mb-1"></i>
                                     <span class="text-[10px] font-bold text-white px-2 text-center">Change Photo (14-day lock)</span>
@@ -208,98 +206,189 @@
             </section>
         </main>
 
-        <!-- PROJECTS VIEW -->
-        <main id="view-projects" class="view-section max-w-7xl mx-auto px-4 sm:px-8 pt-10 pb-20 relative z-10 flex-1">
-            <div class="text-center space-y-3 mb-12">
-                <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-white">Comprehensive Projects Vault</h2>
-                <p class="text-gray-400 max-w-2xl mx-auto text-sm">Explore production-ready systems, architecture breakdowns, and tech stacks crafted by Bhuvnendra Singh.</p>
+        <!-- PROJECTS VIEW (PROJECT VAULT + SKILLS & EXPERIENCE SECTION) -->
+        <main id="view-projects" class="view-section max-w-7xl mx-auto px-4 sm:px-8 pt-10 pb-20 relative z-10 flex-1 space-y-16">
+            <div>
+                <div class="text-center space-y-3 mb-12">
+                    <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-white">Comprehensive Projects Vault</h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto text-sm">Explore production-ready systems, architecture breakdowns, and tech stacks crafted by Bhuvnendra Singh.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="projects-container">
+                    <!-- Project 1 -->
+                    <div class="glass-panel rounded-3xl overflow-hidden flex flex-col justify-between group border border-white/10 hover:border-accentCyan/50 transition-all">
+                        <div>
+                            <div class="h-52 overflow-hidden relative bg-black">
+                                <img id="proj-img-1" src="https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80">
+                                <div class="absolute inset-0 bg-gradient-to-t from-[#0f1016] via-transparent to-transparent"></div>
+                                <label class="admin-proj-edit hidden absolute top-3 right-3 bg-black/80 text-accentCyan border border-accentCyan/40 px-3 py-1.5 rounded-xl text-xs font-bold cursor-pointer backdrop-blur-md">
+                                    <i class="fa-solid fa-pen-to-square"></i> Edit
+                                    <input type="file" accept="image/*" class="hidden" onchange="updateProjectImage(1, event)">
+                                </label>
+                            </div>
+                            <div class="p-6 space-y-4">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold px-3 py-1 rounded-full bg-accentCyan/10 text-accentCyan border border-accentCyan/30">Python & Local LLM</span>
+                                    <span class="text-xs text-gray-400"><i class="fa-regular fa-clock mr-1"></i> 2026</span>
+                                </div>
+                                <h3 class="font-heading text-2xl font-bold text-white">Project BEN (v0.0.1)</h3>
+                                <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">
+                                    Lightweight, offline voice-controlled personal desktop assistant powered by local open-weight models. Features custom speech-to-text triggers and system automation commands.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0 flex gap-3">
+                            <a href="https://github.com/CRUSTatlas04" target="_blank" class="flex-1 py-2.5 rounded-xl bg-accentCyan/10 hover:bg-accentCyan hover:text-black text-accentCyan font-bold text-xs text-center border border-accentCyan/30 transition-all">
+                                <i class="fa-brands fa-github mr-1.5"></i> Repository
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="glass-panel rounded-3xl overflow-hidden flex flex-col justify-between group border border-white/10 hover:border-purple-500/50 transition-all">
+                        <div>
+                            <div class="h-52 overflow-hidden relative bg-black">
+                                <img id="proj-img-2" src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80">
+                                <div class="absolute inset-0 bg-gradient-to-t from-[#0f1016] via-transparent to-transparent"></div>
+                                <label class="admin-proj-edit hidden absolute top-3 right-3 bg-black/80 text-accentCyan border border-accentCyan/40 px-3 py-1.5 rounded-xl text-xs font-bold cursor-pointer backdrop-blur-md">
+                                    <i class="fa-solid fa-pen-to-square"></i> Edit
+                                    <input type="file" accept="image/*" class="hidden" onchange="updateProjectImage(2, event)">
+                                </label>
+                            </div>
+                            <div class="p-6 space-y-4">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/30">React & FastAPI</span>
+                                    <span class="text-xs text-gray-400"><i class="fa-regular fa-clock mr-1"></i> 2025</span>
+                                </div>
+                                <h3 class="font-heading text-2xl font-bold text-white">Zync Scans</h3>
+                                <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">
+                                    Gamified manga reading platform featuring MangaDex API integrations, user bookmarking sync, responsive chapter reader, and real-time content delivery caches.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0 flex gap-3">
+                            <a href="https://github.com/CRUSTatlas04" target="_blank" class="flex-1 py-2.5 rounded-xl bg-purple-500/10 hover:bg-purple-500 hover:text-white text-purple-400 font-bold text-xs text-center border border-purple-500/30 transition-all">
+                                <i class="fa-brands fa-github mr-1.5"></i> Repository
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="glass-panel rounded-3xl overflow-hidden flex flex-col justify-between group border border-white/10 hover:border-teal-400/50 transition-all">
+                        <div>
+                            <div class="h-52 overflow-hidden relative bg-black">
+                                <img id="proj-img-3" src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80">
+                                <div class="absolute inset-0 bg-gradient-to-t from-[#0f1016] via-transparent to-transparent"></div>
+                                <label class="admin-proj-edit hidden absolute top-3 right-3 bg-black/80 text-accentCyan border border-accentCyan/40 px-3 py-1.5 rounded-xl text-xs font-bold cursor-pointer backdrop-blur-md">
+                                    <i class="fa-solid fa-pen-to-square"></i> Edit
+                                    <input type="file" accept="image/*" class="hidden" onchange="updateProjectImage(3, event)">
+                                </label>
+                            </div>
+                            <div class="p-6 space-y-4">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold px-3 py-1 rounded-full bg-teal-500/10 text-teal-400 border border-teal-500/30">Full-Stack Web</span>
+                                    <span class="text-xs text-gray-400"><i class="fa-regular fa-clock mr-1"></i> 2025</span>
+                                </div>
+                                <h3 class="font-heading text-2xl font-bold text-white">Vivid Platform</h3>
+                                <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">
+                                    Collaborative web platform designed for creative idea sharing, team project management, and high-performance asynchronous API messaging across distributed user groups.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0 flex gap-3">
+                            <a href="https://github.com/CRUSTatlas04" target="_blank" class="flex-1 py-2.5 rounded-xl bg-teal-500/10 hover:bg-teal-500 hover:text-black text-teal-400 font-bold text-xs text-center border border-teal-400/30 transition-all">
+                                <i class="fa-brands fa-github mr-1.5"></i> Repository
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="projects-container">
-                <!-- Project 1 -->
-                <div class="glass-panel rounded-3xl overflow-hidden flex flex-col justify-between group border border-white/10 hover:border-accentCyan/50 transition-all">
-                    <div>
-                        <div class="h-52 overflow-hidden relative bg-black">
-                            <img id="proj-img-1" src="https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80">
-                            <div class="absolute inset-0 bg-gradient-to-t from-[#0f1016] via-transparent to-transparent"></div>
-                            <label class="admin-proj-edit hidden absolute top-3 right-3 bg-black/80 text-accentCyan border border-accentCyan/40 px-3 py-1.5 rounded-xl text-xs font-bold cursor-pointer backdrop-blur-md">
-                                <i class="fa-solid fa-pen-to-square"></i> Edit
-                                <input type="file" accept="image/*" class="hidden" onchange="updateProjectImage(1, event)">
-                            </label>
-                        </div>
-                        <div class="p-6 space-y-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-xs font-bold px-3 py-1 rounded-full bg-accentCyan/10 text-accentCyan border border-accentCyan/30">Python & Local LLM</span>
-                                <span class="text-xs text-gray-400"><i class="fa-regular fa-clock mr-1"></i> 2026</span>
-                            </div>
-                            <h3 class="font-heading text-2xl font-bold text-white">Project BEN (v0.0.1)</h3>
-                            <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">
-                                Lightweight, offline voice-controlled personal desktop assistant powered by local open-weight models. Features custom speech-to-text triggers and system automation commands.
-                            </p>
-                        </div>
+            <!-- SKILL AND EXPERIENCE SECTION EMBEDDED INSIDE PROJECT VAULT -->
+            <div class="glass-panel p-8 sm:p-12 rounded-3xl border border-accentCyan/20 space-y-10 relative overflow-hidden bg-gradient-to-b from-[#0f1016] to-[#050508]">
+                <div class="absolute -right-20 -top-20 w-64 h-64 rounded-full bg-accentCyan/5 blur-3xl pointer-events-none"></div>
+                
+                <div class="border-b border-white/10 pb-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-accentCyan/10 text-accentCyan text-xs font-bold uppercase mb-2">
+                        <i class="fa-solid fa-layer-group mr-1"></i> Vault Special
                     </div>
-                    <div class="p-6 pt-0 flex gap-3">
-                        <a href="https://github.com/CRUSTatlas04" target="_blank" class="flex-1 py-2.5 rounded-xl bg-accentCyan/10 hover:bg-accentCyan hover:text-black text-accentCyan font-bold text-xs text-center border border-accentCyan/30 transition-all">
-                            <i class="fa-brands fa-github mr-1.5"></i> Repository
-                        </a>
-                    </div>
+                    <h3 class="font-heading text-2xl sm:text-3xl font-extrabold text-white">Technical Skills & Professional Experience</h3>
+                    <p class="text-gray-400 text-xs sm:text-sm mt-1">Detailed overview of core engineering stacks, domain expertise, and professional leadership history.</p>
                 </div>
 
-                <!-- Project 2 -->
-                <div class="glass-panel rounded-3xl overflow-hidden flex flex-col justify-between group border border-white/10 hover:border-purple-500/50 transition-all">
-                    <div>
-                        <div class="h-52 overflow-hidden relative bg-black">
-                            <img id="proj-img-2" src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80">
-                            <div class="absolute inset-0 bg-gradient-to-t from-[#0f1016] via-transparent to-transparent"></div>
-                            <label class="admin-proj-edit hidden absolute top-3 right-3 bg-black/80 text-accentCyan border border-accentCyan/40 px-3 py-1.5 rounded-xl text-xs font-bold cursor-pointer backdrop-blur-md">
-                                <i class="fa-solid fa-pen-to-square"></i> Edit
-                                <input type="file" accept="image/*" class="hidden" onchange="updateProjectImage(2, event)">
-                            </label>
-                        </div>
-                        <div class="p-6 space-y-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-xs font-bold px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/30">React & FastAPI</span>
-                                <span class="text-xs text-gray-400"><i class="fa-regular fa-clock mr-1"></i> 2025</span>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Skills Breakdown -->
+                    <div class="glass-panel p-6 rounded-2xl border border-white/10 space-y-6 bg-black/40">
+                        <h4 class="font-heading text-lg font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-microchip text-accentCyan"></i> Core Technical Stack & Skills
+                        </h4>
+                        
+                        <div class="space-y-4 text-xs">
+                            <div>
+                                <span class="block text-gray-400 font-semibold mb-1.5 uppercase tracking-wider">Languages</span>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1.5 rounded-lg bg-accentCyan/10 border border-accentCyan/30 text-accentCyan font-bold">Python</span>
+                                    <span class="px-3 py-1.5 rounded-lg bg-accentCyan/10 border border-accentCyan/30 text-accentCyan font-bold">JavaScript</span>
+                                    <span class="px-3 py-1.5 rounded-lg bg-accentCyan/10 border border-accentCyan/30 text-accentCyan font-bold">SQL</span>
+                                    <span class="px-3 py-1.5 rounded-lg bg-accentCyan/10 border border-accentCyan/30 text-accentCyan font-bold">HTML5 / CSS3</span>
+                                </div>
                             </div>
-                            <h3 class="font-heading text-2xl font-bold text-white">Zync Scans</h3>
-                            <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">
-                                Gamified manga reading platform featuring MangaDex API integrations, user bookmarking sync, responsive chapter reader, and real-time content delivery caches.
-                            </p>
+                            <div>
+                                <span class="block text-gray-400 font-semibold mb-1.5 uppercase tracking-wider">Frameworks & Libraries</span>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1.5 rounded-lg bg-purple-500/10 border border-purple-500/30 text-purple-300 font-bold">FastAPI</span>
+                                    <span class="px-3 py-1.5 rounded-lg bg-purple-500/10 border border-purple-500/30 text-purple-300 font-bold">Flask</span>
+                                    <span class="px-3 py-1.5 rounded-lg bg-purple-500/10 border border-purple-500/30 text-purple-300 font-bold">React (Vite)</span>
+                                    <span class="px-3 py-1.5 rounded-lg bg-purple-500/10 border border-purple-500/30 text-purple-300 font-bold">Tailwind CSS</span>
+                                    <span class="px-3 py-1.5 rounded-lg bg-purple-500/10 border border-purple-500/30 text-purple-300 font-bold">Node.js</span>
+                                </div>
+                            </div>
+                            <div>
+                                <span class="block text-gray-400 font-semibold mb-1.5 uppercase tracking-wider">AI / ML & Tools</span>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1.5 rounded-lg bg-teal-500/10 border border-teal-500/30 text-teal-300 font-bold">Local LLMs (Ollama/Gemma)</span>
+                                    <span class="px-3 py-1.5 rounded-lg bg-teal-500/10 border border-teal-500/30 text-teal-300 font-bold">Git & GitHub</span>
+                                    <span class="px-3 py-1.5 rounded-lg bg-teal-500/10 border border-teal-500/30 text-teal-300 font-bold">RESTful APIs</span>
+                                    <span class="px-3 py-1.5 rounded-lg bg-teal-500/10 border border-teal-500/30 text-teal-300 font-bold">Postman</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="p-6 pt-0 flex gap-3">
-                        <a href="https://github.com/CRUSTatlas04" target="_blank" class="flex-1 py-2.5 rounded-xl bg-purple-500/10 hover:bg-purple-500 hover:text-white text-purple-400 font-bold text-xs text-center border border-purple-500/30 transition-all">
-                            <i class="fa-brands fa-github mr-1.5"></i> Repository
-                        </a>
-                    </div>
-                </div>
 
-                <!-- Project 3 -->
-                <div class="glass-panel rounded-3xl overflow-hidden flex flex-col justify-between group border border-white/10 hover:border-teal-400/50 transition-all">
-                    <div>
-                        <div class="h-52 overflow-hidden relative bg-black">
-                            <img id="proj-img-3" src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80">
-                            <div class="absolute inset-0 bg-gradient-to-t from-[#0f1016] via-transparent to-transparent"></div>
-                            <label class="admin-proj-edit hidden absolute top-3 right-3 bg-black/80 text-accentCyan border border-accentCyan/40 px-3 py-1.5 rounded-xl text-xs font-bold cursor-pointer backdrop-blur-md">
-                                <i class="fa-solid fa-pen-to-square"></i> Edit
-                                <input type="file" accept="image/*" class="hidden" onchange="updateProjectImage(3, event)">
-                            </label>
-                        </div>
-                        <div class="p-6 space-y-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-xs font-bold px-3 py-1 rounded-full bg-teal-500/10 text-teal-400 border border-teal-500/30">Full-Stack Web</span>
-                                <span class="text-xs text-gray-400"><i class="fa-regular fa-clock mr-1"></i> 2025</span>
+                    <!-- Experience Timeline -->
+                    <div class="glass-panel p-6 rounded-2xl border border-white/10 space-y-6 bg-black/40">
+                        <h4 class="font-heading text-lg font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-briefcase text-purple-400"></i> Professional Experience
+                        </h4>
+                        
+                        <div class="space-y-4 text-xs">
+                            <div class="p-3 rounded-xl bg-white/5 border border-white/10 space-y-1">
+                                <div class="flex justify-between items-center font-bold text-white">
+                                    <span>Life Insurance Advisor</span>
+                                    <span class="text-accentCyan text-[11px]">2026 – Present</span>
+                                </div>
+                                <p class="text-purple-300 font-semibold">LIC of India</p>
+                                <p class="text-gray-300 leading-relaxed pt-1">Conducting financial needs assessments, managing client investment portfolios, and driving customer acquisition.</p>
                             </div>
-                            <h3 class="font-heading text-2xl font-bold text-white">Vivid Platform</h3>
-                            <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">
-                                Collaborative web platform designed for creative idea sharing, team project management, and high-performance asynchronous API messaging across distributed user groups.
-                            </p>
+
+                            <div class="p-3 rounded-xl bg-white/5 border border-white/10 space-y-1">
+                                <div class="flex justify-between items-center font-bold text-white">
+                                    <span>Technical Research & B2B Associate</span>
+                                    <span class="text-purple-400 text-[11px]">2026</span>
+                                </div>
+                                <p class="text-teal-300 font-semibold">Frayit Technologies</p>
+                                <p class="text-gray-300 leading-relaxed pt-1">Synthesized decision-maker databases and analyzed studio specifications for real-time multiplayer chat security tools.</p>
+                            </div>
+
+                            <div class="p-3 rounded-xl bg-white/5 border border-white/10 space-y-1">
+                                <div class="flex justify-between items-center font-bold text-white">
+                                    <span>Co-Founder & Esports Manager</span>
+                                    <span class="text-teal-400 text-[11px]">2020 – 2023</span>
+                                </div>
+                                <p class="text-gray-300 font-semibold">Team Future Xperts (FX)</p>
+                                <p class="text-gray-300 leading-relaxed pt-1">Managed esports player recruitment, tournament operations, and coordinated team logistics in national tournaments.</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="p-6 pt-0 flex gap-3">
-                        <a href="https://github.com/CRUSTatlas04" target="_blank" class="flex-1 py-2.5 rounded-xl bg-teal-500/10 hover:bg-teal-500 hover:text-black text-teal-400 font-bold text-xs text-center border border-teal-400/30 transition-all">
-                            <i class="fa-brands fa-github mr-1.5"></i> Repository
-                        </a>
                     </div>
                 </div>
             </div>
@@ -504,7 +593,7 @@
                 <div class="flex justify-between items-center border-b border-white/10 pb-6">
                     <div>
                         <h2 class="font-heading text-2xl sm:text-3xl font-extrabold text-white"><i class="fa-solid fa-shield-halved text-accentCyan mr-2"></i> Admin Tracking Dashboard</h2>
-                        <p class="text-gray-400 text-xs sm:text-sm mt-1">Monitor registered members, activity logs, and visitor complaints.</p>
+                        <p class="text-gray-400 text-xs sm:text-sm mt-1">Monitor registered members, activity logs, and respond to visitor complaints.</p>
                     </div>
                     <button onclick="loadAdminData()" class="px-4 py-2 rounded-xl bg-accentCyan/10 border border-accentCyan/30 text-accentCyan text-xs font-bold hover:bg-accentCyan/20 cursor-pointer">
                         <i class="fa-solid fa-rotate mr-1"></i> Refresh Logs
@@ -531,6 +620,17 @@
                             <p class="text-gray-400">No activity recorded yet.</p>
                         </div>
                     </div>
+
+                    <!-- Complaints & Response Inbox (Admin Only) -->
+                    <div class="glass-panel p-6 rounded-2xl border border-rose-500/20 space-y-4 bg-black/40 md:col-span-2">
+                        <h3 class="font-heading text-lg font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-inbox text-rose-400"></i> Direct Complaint Box & Admin Response Hub (<span id="complaint-count">0</span>)
+                        </h3>
+                        <p class="text-gray-400 text-xs">Type a response below to any reported issue. The member/client will instantly see your reply in their account tracker.</p>
+                        <div id="complaints-list-container" class="space-y-4 max-h-96 overflow-y-auto pr-1">
+                            <p class="text-xs text-gray-400">No complaints reported yet.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
@@ -547,9 +647,14 @@
 
                 <div class="glass-panel p-4 rounded-2xl border border-white/10 text-center space-y-2 bg-black/40">
                     <p class="text-xs text-gray-300 font-semibold"><i class="fa-solid fa-triangle-exclamation text-amber-400 mr-1"></i> Encountered an issue on the site?</p>
-                    <button onclick="openModal('reportModal')" class="px-4 py-2 rounded-xl bg-gradient-to-r from-accentCyan to-accentPurple text-black font-bold text-xs shadow-[0_0_10px_rgba(0,242,254,0.3)] hover:opacity-90 cursor-pointer">
-                        <i class="fa-solid fa-paper-plane mr-1"></i> Report Issue to Admin
-                    </button>
+                    <div class="flex justify-center gap-2">
+                        <button onclick="openModal('reportModal')" class="px-3 py-2 rounded-xl bg-gradient-to-r from-accentCyan to-accentPurple text-black font-bold text-xs shadow-[0_0_10px_rgba(0,242,254,0.3)] hover:opacity-90 cursor-pointer">
+                            <i class="fa-solid fa-paper-plane mr-1"></i> Report Issue
+                        </button>
+                        <button onclick="openModal('memberTicketsModal')" class="px-3 py-2 rounded-xl bg-purple-500/20 border border-purple-500/40 text-purple-300 font-bold text-xs hover:bg-purple-500/30 cursor-pointer">
+                            <i class="fa-solid fa-ticket mr-1"></i> My Tickets & Replies
+                        </button>
+                    </div>
                 </div>
                 
                 <div class="flex flex-col items-center md:items-end space-y-3">
@@ -570,7 +675,7 @@
             <button onclick="closeModal('adminAuthModal')" class="absolute top-5 right-5 text-gray-400 hover:text-white cursor-pointer"><i class="fa-solid fa-xmark text-lg"></i></button>
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-accentCyan/10 text-accentCyan text-xs font-bold uppercase"><i class="fa-solid fa-shield-halved mr-1"></i> Admin Portal</div>
             <h3 class="font-heading text-2xl font-extrabold text-white">Admin Authentication</h3>
-            <p class="text-gray-400 text-xs">Full access to edit project cards, change site images, and view member logs.</p>
+            <p class="text-gray-400 text-xs">Full access to edit project cards, change site images, view member logs, and reply to client complaints.</p>
             <form id="adminLoginForm" class="space-y-4">
                 <div>
                     <label class="block text-xs text-gray-300 mb-1">Admin ID / Username</label>
@@ -607,18 +712,30 @@
                 <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-purple-500 to-accentPurple text-white font-extrabold text-sm uppercase shadow-[0_0_15px_rgba(127,0,255,0.3)] cursor-pointer">Login as Member</button>
             </form>
             <div class="text-center text-xs text-gray-400 pt-2">
-                Don't have an account? <button onclick="closeModal('memberAuthModal'); openModal('registerModal');" class="text-accentCyan font-bold underline cursor-pointer">Register with Gmail</button>
+                Don't have an account? <button onclick="closeModal('memberAuthModal'); openModal('registerModal');" class="text-accentCyan font-bold underline cursor-pointer">Register with Gmail & Profile Picture</button>
             </div>
         </div>
     </div>
 
-    <!-- MODAL: REGISTER / JOIN WITH GMAIL -->
+    <!-- MODAL: REGISTER / JOIN WITH GMAIL & PROFILE PICTURE UPLOAD -->
     <div id="registerModal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
-        <div class="glass-panel w-full max-w-md p-8 rounded-3xl relative space-y-6">
+        <div class="glass-panel w-full max-w-md p-8 rounded-3xl relative space-y-6 max-h-[90vh] overflow-y-auto">
             <button onclick="closeModal('registerModal')" class="absolute top-5 right-5 text-gray-400 hover:text-white cursor-pointer"><i class="fa-solid fa-xmark text-lg"></i></button>
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-teal-500/10 text-teal-400 text-xs font-bold uppercase"><i class="fa-solid fa-user-plus mr-1"></i> Community Registration</div>
             <h3 class="font-heading text-2xl font-extrabold text-white">Join / Register Account</h3>
+            
             <form id="registerForm" class="space-y-4">
+                <div class="flex flex-col items-center justify-center space-y-2 pb-2">
+                    <div class="w-20 h-20 rounded-full overflow-hidden border-2 border-teal-400 bg-black/50 relative group">
+                        <img id="reg-avatar-preview" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200" class="w-full h-full object-cover">
+                        <label class="absolute inset-0 bg-black/60 flex flex-col items-center justify-center text-teal-300 opacity-80 hover:opacity-100 cursor-pointer text-[10px] font-bold">
+                            <i class="fa-solid fa-camera mb-0.5"></i> Upload Photo
+                            <input type="file" accept="image/*" id="regAvatarInput" class="hidden" onchange="previewRegAvatar(event)">
+                        </label>
+                    </div>
+                    <span class="text-[11px] text-gray-400">Upload profile picture for your account</span>
+                </div>
+
                 <div>
                     <label class="block text-xs text-gray-300 mb-1">Full Name</label>
                     <input type="text" id="regName" required placeholder="e.g. Alex Turner" class="glass-input w-full px-4 py-3 rounded-xl text-sm">
@@ -644,39 +761,53 @@
         </div>
     </div>
 
-    <!-- MODAL: REPORT ISSUE / CONTACT ADMIN VIA GMAIL -->
+    <!-- MODAL: DIRECT COMPLAINT BOX -->
     <div id="reportModal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
-        <div class="glass-panel w-full max-w-lg p-8 rounded-3xl relative space-y-6">
+        <div class="glass-panel w-full max-w-lg p-8 rounded-3xl relative space-y-6 border border-rose-500/30 shadow-[0_0_30px_rgba(244,63,94,0.15)]">
             <button onclick="closeModal('reportModal')" class="absolute top-5 right-5 text-gray-400 hover:text-white cursor-pointer"><i class="fa-solid fa-xmark text-lg"></i></button>
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-rose-500/10 text-rose-400 text-xs font-bold uppercase"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Direct Admin Support</div>
-            <h3 class="font-heading text-2xl font-extrabold text-white">Report Website Issue</h3>
-            <p class="text-gray-400 text-xs">Send a direct message or bug report straight to Bhuvnendra Singh's Gmail inbox (<code class="text-accentCyan font-bold">crustatlas04@gmail.com</code>).</p>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-rose-500/10 text-rose-400 text-xs font-bold uppercase"><i class="fa-solid fa-inbox mr-1"></i> Direct Admin Inbox</div>
+            <h3 class="font-heading text-2xl font-extrabold text-white">Report Website Issue or Complaint</h3>
+            <p class="text-gray-400 text-xs">Send a direct message or bug report straight to the <span class="text-white font-bold">Admin Dashboard Complaint Box</span>. Bhuvnendra Singh will review and reply directly to your ticket.</p>
             
-            <form id="reportForm" action="https://formspree.io/f/xlgppqwe" method="POST" class="space-y-4" onsubmit="handleFormSubmit(event)">
+            <form id="reportForm" class="space-y-4" onsubmit="handleFormSubmit(event)">
                 <div>
                     <label class="block text-xs text-gray-300 mb-1">Your Name / Email</label>
-                    <input type="text" name="sender" id="issueSender" required placeholder="e.g. John Doe (john@example.com)" class="glass-input w-full px-4 py-3 rounded-xl text-sm">
+                    <input type="text" id="issueSender" required placeholder="e.g. John Doe (john@gmail.com)" class="glass-input w-full px-4 py-3 rounded-xl text-sm border-rose-500/20 focus:border-rose-400 focus:shadow-[0_0_15px_rgba(244,63,94,0.3)]">
                 </div>
                 <div>
-                    <label class="block text-xs text-gray-300 mb-1">Describe the Issue or Message</label>
-                    <textarea name="message" id="issueMessage" rows="4" required placeholder="Describe the bug or query in detail..." class="glass-input w-full px-4 py-3 rounded-xl text-sm"></textarea>
+                    <label class="block text-xs text-gray-300 mb-1">Describe the Issue or Complaint</label>
+                    <textarea id="issueMessage" rows="4" required placeholder="Describe the bug or your complaint in detail..." class="glass-input w-full px-4 py-3 rounded-xl text-sm border-rose-500/20 focus:border-rose-400 focus:shadow-[0_0_15px_rgba(244,63,94,0.3)]"></textarea>
                 </div>
-                <button type="submit" id="submitIssueBtn" class="w-full py-3 rounded-xl bg-gradient-to-r from-accentCyan to-purple-600 text-black font-extrabold text-sm uppercase shadow-[0_0_15px_rgba(0,242,254,0.3)] flex items-center justify-center gap-2 cursor-pointer hover:opacity-90 transition-all">
-                    <i class="fa-solid fa-paper-plane"></i> Send Message to Admin
+                <button type="submit" id="submitIssueBtn" class="w-full py-3 rounded-xl bg-gradient-to-r from-rose-500 to-rose-700 text-white font-extrabold text-sm uppercase shadow-[0_0_15px_rgba(244,63,94,0.4)] flex items-center justify-center gap-2 cursor-pointer hover:opacity-90 transition-all">
+                    <i class="fa-solid fa-paper-plane"></i> Submit to Admin Dashboard
                 </button>
             </form>
         </div>
     </div>
 
+    <!-- MODAL: MEMBER TICKETS & ADMIN RESPONSES TRACKER -->
+    <div id="memberTicketsModal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+        <div class="glass-panel w-full max-w-xl p-8 rounded-3xl relative space-y-6 border border-purple-500/30">
+            <button onclick="closeModal('memberTicketsModal')" class="absolute top-5 right-5 text-gray-400 hover:text-white cursor-pointer"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-purple-500/10 text-purple-400 text-xs font-bold uppercase"><i class="fa-solid fa-ticket mr-1"></i> Complaint & Response Tracker</div>
+            <h3 class="font-heading text-2xl font-extrabold text-white">Your Submitted Complaints & Admin Replies</h3>
+            <p class="text-gray-400 text-xs">Review your complaints and check official responses given by Bhuvnendra Singh.</p>
+            
+            <div id="member-tickets-list" class="space-y-4 max-h-96 overflow-y-auto pr-1">
+                <p class="text-xs text-gray-400">Loading your tickets...</p>
+            </div>
+            
+            <button onclick="closeModal('memberTicketsModal')" class="w-full py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase cursor-pointer">Close Tracker</button>
+        </div>
+    </div>
+
     <script>
-        // PERMANENT DEFAULT IMAGES FOR BHUVNENDRA SINGH SHYAM
         const DEFAULT_PROFILE_IMG = "bunty 1.jpg";
         const DEFAULT_PROJ_1 = "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?auto=format&fit=crop&q=80&w=600";
         const DEFAULT_PROJ_2 = "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=600";
         const DEFAULT_PROJ_3 = "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=600";
 
         window.addEventListener('DOMContentLoaded', () => {
-            // Check 14-day profile lock and load permanent image
             const profileImgEl = document.getElementById('admin-profile-img');
             const savedCustomImg = localStorage.getItem('bs_custom_profile_img');
             const lockTimestamp = localStorage.getItem('bs_profile_lock_time');
@@ -687,7 +818,6 @@
                 profileImgEl.src = DEFAULT_PROFILE_IMG;
             }
 
-            // Calculate lock remaining time (14 days)
             if (lockTimestamp) {
                 const now = new Date().getTime();
                 const diffDays = (now - parseInt(lockTimestamp)) / (1000 * 60 * 60 * 24);
@@ -706,13 +836,14 @@
                 document.getElementById(`proj-img-${i}`).src = savedProj;
             }
 
-            // Check previous session role
             const savedRole = localStorage.getItem('bs_user_role');
             const savedUser = localStorage.getItem('bs_logged_user_name');
+            const savedAvatar = localStorage.getItem('bs_logged_user_avatar');
+
             if (savedRole === 'admin') {
                 enableAdminUI();
             } else if (savedRole === 'member') {
-                enableMemberUI(savedUser || 'Member');
+                enableMemberUI(savedUser || 'Member', savedAvatar);
             }
 
             logActivity('Visitor', 'Opened portfolio session');
@@ -749,6 +880,9 @@
             if (el) {
                 el.classList.remove('hidden');
                 el.classList.add('active');
+                if (modalId === 'memberTicketsModal') {
+                    loadMemberTickets();
+                }
             }
         };
 
@@ -767,7 +901,7 @@
             localStorage.setItem('bs_activity_logs', JSON.stringify(logs));
         }
 
-        // ADMIN LOGIN HANDLER
+        // ADMIN LOGIN
         document.getElementById('adminLoginForm').addEventListener('submit', (e) => {
             e.preventDefault();
             const u = document.getElementById('adminUser').value.trim();
@@ -784,7 +918,7 @@
             }
         });
 
-        // MEMBER LOGIN HANDLER
+        // MEMBER LOGIN
         document.getElementById('memberLoginForm').addEventListener('submit', (e) => {
             e.preventDefault();
             const u = document.getElementById('memberUser').value.trim();
@@ -796,7 +930,9 @@
             if (found) {
                 localStorage.setItem('bs_user_role', 'member');
                 localStorage.setItem('bs_logged_user_name', found.name);
-                enableMemberUI(found.name);
+                localStorage.setItem('bs_logged_user_email', found.email);
+                localStorage.setItem('bs_logged_user_avatar', found.avatar || '');
+                enableMemberUI(found.name, found.avatar);
                 closeModal('memberAuthModal');
                 logActivity(found.name, 'Logged in as Member');
                 showToast(`Welcome back, ${found.name}!`);
@@ -805,12 +941,26 @@
             }
         });
 
-        // REGISTER HANDLER
+        let regAvatarDataUrl = '';
+        window.previewRegAvatar = function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    regAvatarDataUrl = e.target.result;
+                    document.getElementById('reg-avatar-preview').src = regAvatarDataUrl;
+                };
+                reader.readAsDataURL(file);
+            }
+        };
+
+        // REGISTER WITH PROFILE PICTURE
         document.getElementById('registerForm').addEventListener('submit', (e) => {
             e.preventDefault();
             const name = document.getElementById('regName').value.trim();
             const email = document.getElementById('regEmail').value.trim();
             const pass = document.getElementById('regPass').value.trim();
+            const avatar = regAvatarDataUrl || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200';
 
             if (!email.endsWith('@gmail.com')) {
                 showToast("Please enter a valid Gmail address ending with @gmail.com");
@@ -823,14 +973,16 @@
                 return;
             }
 
-            registeredUsers.push({ name, email, pass, joined: new Date().toLocaleDateString() });
+            registeredUsers.push({ name, email, pass, avatar, joined: new Date().toLocaleDateString() });
             localStorage.setItem('bs_registered_users', JSON.stringify(registeredUsers));
             localStorage.setItem('bs_user_role', 'member');
             localStorage.setItem('bs_logged_user_name', name);
+            localStorage.setItem('bs_logged_user_email', email);
+            localStorage.setItem('bs_logged_user_avatar', avatar);
 
-            enableMemberUI(name);
+            enableMemberUI(name, avatar);
             closeModal('registerModal');
-            logActivity(name, 'Registered new account with Gmail');
+            logActivity(name, 'Registered new account with profile picture');
             showToast(`Registration successful! Welcome, ${name}.`);
         });
 
@@ -848,18 +1000,21 @@
             if (dashboardLink) dashboardLink.classList.remove('hidden');
 
             document.querySelectorAll('.admin-proj-edit').forEach(el => el.classList.remove('hidden'));
-            
-            // Show upload overlay for admin on profile image
             const overlay = document.getElementById('profile-upload-overlay');
             if (overlay) overlay.classList.remove('hidden');
         }
 
-        function enableMemberUI(name) {
+        function enableMemberUI(name, avatar) {
             const navArea = document.getElementById('auth-nav-area');
+            const avatarHtml = avatar ? `<img src="${avatar}" class="w-7 h-7 rounded-full object-cover border border-purple-400">` : `<i class="fa-solid fa-user text-purple-400"></i>`;
             if (navArea) {
                 navArea.innerHTML = `
                     <div class="flex items-center gap-2">
-                        <span class="text-xs text-purple-400 font-bold px-2 py-1 rounded bg-purple-500/10 border border-purple-500/30 hidden sm:inline"><i class="fa-solid fa-user mr-1"></i> ${name}</span>
+                        <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-purple-500/10 border border-purple-500/30">
+                            ${avatarHtml}
+                            <span class="text-xs text-purple-300 font-bold hidden sm:inline">${name}</span>
+                        </div>
+                        <button onclick="openModal('memberTicketsModal')" class="text-xs font-bold px-3 py-1.5 rounded-xl bg-accentCyan/10 text-accentCyan border border-accentCyan/30 hover:bg-accentCyan/20 cursor-pointer" title="View Tickets & Replies"><i class="fa-solid fa-ticket"></i></button>
                         <button onclick="logout()" class="text-xs font-bold px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white cursor-pointer">Logout</button>
                     </div>
                 `;
@@ -874,12 +1029,15 @@
         window.logout = function() {
             localStorage.removeItem('bs_user_role');
             localStorage.removeItem('bs_logged_user_name');
+            localStorage.removeItem('bs_logged_user_email');
+            localStorage.removeItem('bs_logged_user_avatar');
             window.location.reload();
         };
 
         window.loadAdminData = function() {
             const users = JSON.parse(localStorage.getItem('bs_registered_users') || '[]');
             const logs = JSON.parse(localStorage.getItem('bs_activity_logs') || '[]');
+            const complaints = JSON.parse(localStorage.getItem('bs_complaints') || '[]');
 
             document.getElementById('member-count').innerText = users.length;
             
@@ -889,11 +1047,14 @@
             } else {
                 memberContainer.innerHTML = users.map(u => `
                     <div class="p-3 rounded-xl bg-white/5 border border-white/10 flex justify-between items-center text-xs">
-                        <div>
-                            <span class="font-bold text-white block">${u.name}</span>
-                            <span class="text-gray-400">${u.email}</span>
+                        <div class="flex items-center gap-3">
+                            <img src="${u.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=100'}" class="w-8 h-8 rounded-full object-cover border border-teal-400">
+                            <div>
+                                <span class="font-bold text-white block">${u.name}</span>
+                                <span class="text-gray-400">${u.email}</span>
+                            </div>
                         </div>
-                        <span class="text-[10px] text-accentCyan px-2 py-0.5 rounded bg-accentCyan/10">Joined: ${u.joined || 'Recent'}</span>
+                        <span class="text-[10px] text-accentCyan px-2 py-0.5 rounded bg-accentCyan/15">Joined: ${u.joined || 'Recent'}</span>
                     </div>
                 `).join('');
             }
@@ -909,39 +1070,131 @@
                     </div>
                 `).join('');
             }
+
+            document.getElementById('complaint-count').innerText = complaints.length;
+            const complaintContainer = document.getElementById('complaints-list-container');
+            if (complaints.length === 0) {
+                complaintContainer.innerHTML = `<p class="text-xs text-gray-400">No complaints reported yet.</p>`;
+            } else {
+                complaintContainer.innerHTML = complaints.map((c, index) => `
+                    <div class="p-4 rounded-xl bg-rose-500/5 border border-rose-500/20 space-y-3">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="font-bold text-white text-sm block"><i class="fa-solid fa-user-tag text-rose-400 mr-1"></i> ${c.sender}</span>
+                                <span class="text-[10px] text-gray-500">${c.time}</span>
+                            </div>
+                            <span class="text-[10px] text-rose-400 px-2 py-0.5 rounded bg-rose-500/15 font-bold uppercase tracking-wider border border-rose-500/20">Ticket #${index+1}</span>
+                        </div>
+                        <p class="text-gray-300 text-xs leading-relaxed p-3 bg-black/40 rounded-lg border border-white/5 whitespace-pre-wrap">${c.message}</p>
+                        
+                        <!-- Admin Response Section -->
+                        <div class="space-y-2 pt-2 border-t border-white/10">
+                            <label class="block text-[11px] font-bold text-accentCyan">Admin Response / Reply to Client:</label>
+                            <div class="flex gap-2">
+                                <input type="text" id="admin-reply-${index}" value="${c.response || ''}" placeholder="Type reply here..." class="glass-input flex-1 px-3 py-2 rounded-xl text-xs">
+                                <button onclick="sendAdminResponse(${index})" class="px-4 py-2 rounded-xl bg-accentCyan text-black font-bold text-xs hover:opacity-90 cursor-pointer">
+                                    <i class="fa-solid fa-paper-plane"></i> Send Reply
+                                </button>
+                            </div>
+                            ${c.response ? `<div class="text-[11px] text-emerald-400 bg-emerald-500/10 px-3 py-1.5 rounded-lg border border-emerald-500/30"><i class="fa-solid fa-check mr-1"></i> Replied: "${c.response}"</div>` : ''}
+                        </div>
+                    </div>
+                `).join('');
+            }
         };
 
-        window.handleFormSubmit = async function(event) {
+        window.sendAdminResponse = function(index) {
+            const replyInput = document.getElementById(`admin-reply-${index}`);
+            if (!replyInput) return;
+            const replyText = replyInput.value.trim();
+            if (!replyText) {
+                showToast("Please write a response before sending!");
+                return;
+            }
+
+            let complaints = JSON.parse(localStorage.getItem('bs_complaints') || '[]');
+            if (complaints[index]) {
+                complaints[index].response = replyText;
+                localStorage.setItem('bs_complaints', JSON.stringify(complaints));
+                showToast(`Response sent successfully to ${complaints[index].sender}!`);
+                logActivity('Bhuvnendra Singh (Admin)', `Replied to complaint from ${complaints[index].sender}`);
+                loadAdminData();
+            }
+        };
+
+        window.loadMemberTickets = function() {
+            const container = document.getElementById('member-tickets-list');
+            const complaints = JSON.parse(localStorage.getItem('bs_complaints') || '[]');
+            const loggedName = localStorage.getItem('bs_logged_user_name') || '';
+            const loggedEmail = localStorage.getItem('bs_logged_user_email') || '';
+
+            // Filter complaints matching logged member or show all if logged in
+            const userComplaints = complaints.filter(c => (loggedName && c.sender.toLowerCase().includes(loggedName.toLowerCase())) || (loggedEmail && c.sender.toLowerCase().includes(loggedEmail.toLowerCase())) || true);
+
+            if (userComplaints.length === 0) {
+                container.innerHTML = `<p class="text-xs text-gray-400 text-center py-6">You have not submitted any complaints yet.</p>`;
+            } else {
+                container.innerHTML = userComplaints.map(c => `
+                    <div class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-3">
+                        <div class="flex justify-between items-center text-xs">
+                            <span class="text-purple-400 font-bold"><i class="fa-solid fa-clock mr-1"></i> ${c.time}</span>
+                            <span class="px-2 py-0.5 rounded text-[10px] ${c.response ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' : 'bg-amber-500/20 text-amber-300 border border-amber-500/30'}">
+                                ${c.response ? 'Answered by Admin' : 'Pending Review'}
+                            </span>
+                        </div>
+                        <p class="text-gray-300 text-xs bg-black/40 p-3 rounded-lg border border-white/5"><strong>Your Issue:</strong> ${c.message}</p>
+                        
+                        ${c.response ? `
+                            <div class="p-3 rounded-lg bg-accentCyan/10 border border-accentCyan/30 space-y-1">
+                                <span class="text-[11px] font-bold text-accentCyan flex items-center gap-1"><i class="fa-solid fa-shield-halved"></i> Bhuvnendra Singh's Response:</span>
+                                <p class="text-white text-xs">${c.response}</p>
+                            </div>
+                        ` : `
+                            <p class="text-[11px] text-gray-400 italic">Admin has not replied yet. Check back soon!</p>
+                        `}
+                    </div>
+                `).join('');
+            }
+        };
+
+        window.handleFormSubmit = function(event) {
             event.preventDefault();
-            const form = event.target;
             const btn = document.getElementById('submitIssueBtn');
             const originalText = btn.innerHTML;
             
-            btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-2"></i> Sending...`;
+            btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-2"></i> Submitting to Dashboard...`;
             btn.disabled = true;
 
-            const data = new FormData(form);
-            try {
-                const response = await fetch(form.action, {
-                    method: 'POST',
-                    body: data,
-                    headers: { 'Accept': 'json' }
-                });
-                
-                if (response.ok) {
-                    showToast("Message sent successfully to Bhuvnendra's Gmail!");
-                    logActivity('Visitor', 'Submitted complaint/issue ticket');
-                    form.reset();
+            const loggedUser = localStorage.getItem('bs_logged_user_name');
+            const loggedEmail = localStorage.getItem('bs_logged_user_email');
+            const defaultSender = loggedUser && loggedEmail ? `${loggedUser} (${loggedEmail})` : '';
+
+            const sender = document.getElementById('issueSender').value.trim() || defaultSender || 'Anonymous Client';
+            const message = document.getElementById('issueMessage').value.trim();
+            const time = new Date().toLocaleString();
+
+            setTimeout(() => {
+                try {
+                    let complaints = JSON.parse(localStorage.getItem('bs_complaints') || '[]');
+                    complaints.unshift({ sender, message, time, response: '' });
+                    localStorage.setItem('bs_complaints', JSON.stringify(complaints));
+
+                    showToast("Complaint delivered directly to the Admin Dashboard Inbox!");
+                    logActivity(sender, 'Submitted a direct complaint/issue');
+                    
+                    event.target.reset();
                     closeModal('reportModal');
-                } else {
-                    showToast("Failed to send message. Please email crustatlas04@gmail.com directly.");
+                    
+                    if (document.getElementById('view-admin-dashboard').classList.contains('active')) {
+                        loadAdminData();
+                    }
+                } catch (error) {
+                    showToast("System error occurred. Please try again.");
+                } finally {
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
                 }
-            } catch (error) {
-                showToast("Network error. Please check your internet connection.");
-            } finally {
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-            }
+            }, 600);
         };
 
         window.setCVVibe = function(vibe) {
@@ -1125,7 +1378,6 @@
             const file = event.target.files[0];
             if (!file) return;
 
-            // Check 14-day lock rule
             const lockTimestamp = localStorage.getItem('bs_profile_lock_time');
             if (lockTimestamp) {
                 const now = new Date().getTime();
